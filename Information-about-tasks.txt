@@ -1,0 +1,16 @@
+* I have created task in React.JS
+
+* Command to run application
+ 1.open command prompt and on path of aline-solution run command -----> npm start.
+
+* About Tasks
+Task 1 -
+    1 . We can print  on web page whatever input in text box we typed.
+    2.I have replaced third character(of input box) and its multiple occrences with character  'X'
+
+Task 2 -
+  1. I have taken text area in which some text content(paragraph ) is there.
+  2. put string or word in text box and click on submit button. if entered word is there in paragraph then it will count occrences
+    from the paragraph and will show count of respective word.
+  3.Note - You can edit &  test paragraph by editing in code of variable ---> paragraphData.code will still working fine.
+********************************************************************** 
