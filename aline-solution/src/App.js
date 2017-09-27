@@ -37,47 +37,67 @@ class App extends Component {
 
     }
     
-  handleClick(){                      //this function to chek occrunces of string
-      
-var array1 = this.state.paragraphData.split(' ');
-var count = 0;
-var array2 = [];
-var stringToReplace = ''
-var indexOfSpecifiedElement = [];
+  handleClick() {                      //this function to chek occrunces of string
 
-for (var i = 0; i < array1.length; i++) {
-    
-    if (array1[i].includes('.')) {
-        indexOfSpecifiedElement.push(i);
-        array2.push(array1[i].split('.'));
-    }
-}
+        var array1 = this.state.paragraphData.split(' ');
+        var count = 0;
+        var array2 = [];
+        var stringToReplace = ''
+        var indexOfSpecifiedElement = [];
 
+        //console.log('---->',array1);
 
+        for (var i = 0; i < array1.length; i++) {
 
-
-for(var i=0;i<array2.length;i++){
-    stringToReplace = array2[i].join(".");
-    for(j=0;j<array2[i].length;j++){
-        for(var k=0;k<array1.length;k++){
-            if(array1[k]===stringToReplace){
-               array1.splice(k,1);
+            if (array1[i].includes('.')) {
+                indexOfSpecifiedElement.push(i);
+                array2.push(array1[i].split('.'));
             }
         }
+
+        console.log('array2 is ---->', array2);
+
+
+        for (var i = 0; i < array2.length; i++) {                           //this function is basically to avoid duplicate entries in array2
+            stringToReplace = array2[i].join(".");
+            for (j = 0; j < array2[i].length; j++) {
+                for (var k = 0; k < array1.length; k++) {
+                    if (array1[k] === stringToReplace) {
+                        array1.splice(k, 1);
+                    }
+                }
+            }
+        }
+        for (var i = 0; i < array2.length; i++) {
+            for (var j = 0; j < array2[i].length; j++) {
+                array1.push(array2[i][j]);
+            }
+        }
+        // for(var i=0;i<array1.length;i++){
+        //     if(array1[i]=== this.state.inputString){
+        //         count++;
+        //     } 
+        // }
+        this.singleStringToMatch = array1.join(" ");
+
+
+        var re = new RegExp(this.state.inputString, 'gmu')
+        this.arrayOfOccuredString = this.singleStringToMatch.match(re);
+
+
+
+        console.log('*****', this.arrayOfOccuredString);
+
+
+        if (this.arrayOfOccuredString == null) {
+            count = 0
+        } else {
+            count = this.arrayOfOccuredString.length;
+            console.log('Here');
+        }
+        this.setState({ count: count });
     }
-}
-for(var i=0;i<array2.length;i++){
-    for(var j=0;j<array2[i].length;j++){
-        array1.push(array2[i][j]);
-    }
-}
-for(var i=0;i<array1.length;i++){
-    if(array1[i]=== this.state.inputString){
-        count++;
-    } 
-}
- this.setState({count:count});
-}
+
   render() {
     return (
       <div>
